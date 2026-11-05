@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07080a">
+<title>Level Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);--bg:#f5f7fb;--card:#fff;--tx:#18202c;--mu:#667085;--ac:#2f6fed;--ok:#1e9e5a;--bd:#e1e6ee;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141b;--card:#1a212c;--tx:#e8edf5;--mu:#93a0b4;--ac:#6b9bff;--ok:#43c37f;--bd:#2a3342;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10141b;--card:#1a212c;--tx:#e8edf5;--mu:#93a0b4;--ac:#6b9bff;--ok:#43c37f;--bd:#2a3342;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:0 14px calc(76px + env(safe-area-inset-bottom,0px));max-width:640px;margin:0 auto}
+h1{font-size:22px;margin:16px 0 2px}h2{font-size:16px;margin:18px 0 8px}
+.mu{color:var(--mu);font-size:13px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin:8px 0}
+.row{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:var(--card);border:1px solid var(--bd);border-radius:12px;margin:6px 0;cursor:pointer}
+.row.now{border-color:var(--ac);box-shadow:0 0 0 1px var(--ac)}
+.row.dn{opacity:.55}.row.dn .t{text-decoration:line-through}
+.bx{width:22px;height:22px;border-radius:6px;border:2px solid var(--bd);flex:none;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.dn .bx{background:var(--ok);border-color:var(--ok)}
+.tm{font-weight:600;min-width:46px;font-size:13px;color:var(--ac)}
+.bar{height:8px;background:var(--bd);border-radius:8px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--ok)}
+button,select,input{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 10px}
+button{background:var(--ac);color:#fff;border:0;cursor:pointer}button.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.chips button{padding:5px 10px}
+.ex{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.ex input{width:84px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.st b{font-size:22px;display:block}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--bd);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));z-index:9}
+nav button{flex:1;background:none;color:var(--mu);border:0;padding:8px 2px;font-size:13px}nav button.on{color:var(--ac);font-weight:700}
+#toast{position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top,0px));background:var(--ac);color:#fff;padding:10px 12px;border-radius:10px;display:none;z-index:20}
+.sm{font-size:13px;margin:3px 0}
+.hero{background:linear-gradient(135deg,#6a5cff,#2fd3c0);color:#fff;border-radius:18px;padding:16px;margin:16px 0 10px;box-shadow:0 8px 24px rgba(106,92,255,.3)}
+.hq{font-size:18px;font-weight:700;line-height:1.35;margin-top:6px}
+.mo{background:rgba(255,255,255,.2);font-size:22px;padding:6px 12px;border:2px solid transparent}.mo.sel{border-color:#fff;background:rgba(255,255,255,.35)}
+.card,.row{box-shadow:0 2px 10px rgba(20,30,60,.06);border-radius:14px}
+button{background:linear-gradient(135deg,#6a5cff,#8f6bff)}
+nav{backdrop-filter:blur(12px)}
+.bar i{background:linear-gradient(90deg,#6a5cff,#2fd3c0)}
+.row.now{border-color:#6a5cff;box-shadow:0 0 0 2px #6a5cff55}
+.tm{color:#6a5cff}
+.cb{background:linear-gradient(135deg,#6a5cff,#8f6bff);color:#fff;padding:7px 14px;border-radius:8px;text-decoration:none;font-size:14px}
+textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px}
+nav button{font-size:11.5px;padding:8px 0}
+:root:root:root{--bg:#07080a;--card:#111317;--tx:#e9ecf1;--mu:#8c93a1;--ac:#cdd3dd;--ok:#d5dae3;--bd:#262a33;color-scheme:dark}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 85% -5%,rgba(205,211,221,.12),transparent 60%),radial-gradient(700px 500px at -10% 40%,rgba(150,160,180,.08),transparent 60%),#07080a;background-attachment:fixed}
+h1,h2,.hq{font-family:"Space Grotesk",Inter,system-ui,sans-serif;letter-spacing:.2px}
+h1{font-weight:700}
+.card,.row{background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.08);box-shadow:0 6px 20px rgba(0,0,0,.45)}
+.hero{background:linear-gradient(135deg,#15181d 0%,#2a2f37 55%,#555c68 100%);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.12)}
+button,.cb{background:linear-gradient(135deg,#eef1f5,#9aa2b1);color:#0b0c0f;font-weight:600}
+button.g{background:rgba(255,255,255,.04);color:var(--tx);border:1px solid rgba(255,255,255,.12)}
+.mo{background:rgba(255,255,255,.08);color:#fff}.mo.sel{border-color:#e9ecf1;background:rgba(255,255,255,.22)}
+nav{background:rgba(12,13,16,.85);border-top:1px solid rgba(255,255,255,.08)}
+nav button{background:none;color:var(--mu)}nav button.on{color:#fff}
+.bar{background:rgba(255,255,255,.08)}.bar i{background:linear-gradient(90deg,#8d95a3,#f2f4f8)}
+.tm{color:#cdd3dd}
+.row.now{border-color:#e9ecf1;box-shadow:0 0 0 1px #e9ecf1,0 0 18px rgba(233,236,241,.18)}
+.dn .bx{color:#0b0c0f;background:#d5dae3;border-color:#d5dae3}
+input,select,textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:var(--tx)}
+#toast{background:linear-gradient(135deg,#eef1f5,#9aa2b1);color:#0b0c0f;font-weight:600}
+.hero{position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;opacity:.38;mix-blend-mode:screen;pointer-events:none;background-size:cover;background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006 .018' numOctaves='5' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .86 0 0 0 0 .89 0 0 0 0 .94 0 0 0 -9 4.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E")}
+.hero>*{position:relative}
+</style></head><body>
+<div id="toast"></div><div id="app"></div>
+<nav id="nav"></nav>
+<script>
+const K="levelup_v1";
+let st={start:null,done:{},gym:[],dsa:[],wt:[],once:{},mood:{},rev:{},steps:{},contacts:[]};
+try{const r=localStorage.getItem(K);if(r)st=Object.assign(st,JSON.parse(r));}catch(e){}
+const sv=()=>{try{localStorage.setItem(K,JSON.stringify(st));}catch(e){}};
+const dk=d=>d.toLocaleDateString("en-CA"),today=()=>dk(new Date());
+if(!st.start){st.start=today();sv();}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S=[["07:15","Wake up, water, stretch","Alarm across the room. Get sunlight."],["07:30","Niece’s school drop","Walk if you can."],["08:15","Breakfast (protein)","Eggs, paneer, curd, dal, milk."],["09:00","Gym, or walk + dance","Open the Gym tab and log your sets."],["10:30","Bath, recovery meal","Phone stays in another room."],["11:00","DSA deep work (90 min)","2 problems, one topic. No tabs."],["12:30","Break, snack","Reels only 20 min, timer on."],["13:15","Niece pickup","Listen to a tech podcast."],["13:45","Lunch and rest","No reels."],["14:45","Call girlfriend","Phone away, full attention."],["15:45","Backend project (105 min)","One project at a time."],["17:30","Job applications + LinkedIn","5 targeted applications, 2-3 alumni messages."],["18:15","Skills hour","SK"],["19:00","House chores, tea",""],["19:45","CS fundamentals","OS, DBMS, networks, SQL. Write notes."],["20:30","Dinner","Lighter and earlier."],["21:00","Friends call / BGMI","Hard stop at 10:30."],["22:30","Call girlfriend","Heads-up at 11:10, goodnight ritual."],["23:30","Wind down","Brush, write tomorrow’s top 3, phone charges away."],["23:45","Sleep","Phone never in bed."]];
+const S0=S.slice();if(st.sched&&st.sched.length)S=st.sched;
+const SK=["Cook one new dish","Sketching: 30 min of basics (lines, shapes, shading), then draw something real","Dance: one 30-second routine, mirror practice","Acting: record a 1-minute monologue or scene, watch it back","Music: piano or guitar theory and chords on a free app or chord chart","Card tricks, then perform one for someone","Design: redo an app screen or poster in Figma or Canva"];
+const SKN=["Sun: cook one new dish","Mon: sketching","Tue: dance","Wed: acting","Thu: music (piano/guitar)","Fri: card tricks","Sat: design (Figma/Canva)"];
+const UA=[["Flat bench press","3x6-10"],["Seated row machine","3x8-12"],["Multi press machine (shoulders)","3x8-10"],["Lat pulldown machine","3x8-12"],["Pec fly / rear delt","3x12-15"],["Bicep curl machine","2x10-12"],["Cable triceps pushdown","2x10-12"],["Decline bench sit-ups","3x10-15"]];
+const G={1:["Upper A",UA],2:["Lower A",[["Smith machine squat","3x6-10"],["Romanian deadlift","3x8-10"],["Leg press","3x10-12"],["Quad curl (leg extension)","3x12"],["Leg curl","3x10-12"],["Calf raises on leg press","3x12-15"],["Plank","3x30-45 sec"]]],4:["Upper B",[["Incline dumbbell press","3x8-12"],["Close-grip lat pulldown","3x8-12"],["Seated dumbbell press","3x8-10"],["One-arm dumbbell row","3x10 per side"],["Lateral raises","3x12-15"],["Preacher curl","2x10-12"],["Overhead cable triceps extension","2x10-12"],["Decline bench sit-ups","3x10-15"]]],5:["Lower B",[["Deadlift","3x5-6"],["45° hack squat / leg press combo","3x8-10"],["Hip thrust (bench + barbell)","3x10-12"],["Leg curl","3x10-12"],["Hyperextension bench","3x10-12"],["Two-side rotator","3x12-15 per side"]]]};
+const W=[["Python basics, Big-O, arrays, strings","Git and GitHub profile, SQL basics (SQLBolt)","OS: processes, threads"],["Hashing, two pointers, sliding window","HTTP + REST, FastAPI hello world and routes","DBMS: keys, normalization"],["Linked lists, stacks, queues, binary search","Project 1: CRUD API with a database","SQL joins and indexes"],["Recursion, backtracking, trees","JWT login, validation, tests, deploy project 1","Networks: TCP, HTTP, DNS"],["Graphs (BFS/DFS), heaps","Project 2 with your ECE flavor","OOP and basic system design"],["Intro DP, revise weak topics","Finish project 2, write READMEs","Mock interview questions"]];
+const C=["Sunscreen on (morning)","Gentle face wash or rinse","Moisturizer or aloe gel","Posture: wall angels + band pull-aparts","Protein at every meal, enough water","Face wash after gym sweat","Brush and floss","Screen breaks: 20 sec every 20 min","Phone charging away from bed"];
+const AP=["Eye test, updated glasses","Dermatologist (hair and skin)","Dentist or dental college","Speech therapist (stutter support)","Urologist or counsellor, when ready"];
+let TOT=S.length+C.length;
+let tab="today",gd=new Date().getDay(),wk=null;
+const D=()=>st.done[today()]||(st.done[today()]={});
+const cnt=k=>Object.values(st.done[k]||{}).filter(Boolean).length;
+const curWeek=()=>{const m=new Date(st.start);m.setUTCDate(m.getUTCDate()-((m.getUTCDay()+6)%7));return Math.min(6,Math.max(1,Math.floor((new Date(today())-m)/864e5/7)+1));};
+function tg(id){D()[id]=!D()[id];sv();render();}
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",6000);}
+function notify(t,b){chime();try{if(window.Notification&&Notification.permission==="granted")new Notification(t,{body:b});}catch(e){}toast(t+": "+b);}
+function askNotif(){if(NL){schedNative(true);return;}try{Notification.requestPermission().then(p=>toast(p==="granted"?"Reminders on while this page is open.":"Notifications blocked. In-page reminders still work."));}catch(e){toast("Notifications not supported here. In-page reminders still work.");}}
+let fired="";
+setInterval(()=>{const n=new Date(),h=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0");const s=S.find(x=>x[0]===h);if(!NL&&n.getDay()!==0&&s&&fired!==today()+h){fired=today()+h;notify(h+" "+s[1],s[2]==="SK"?SKN[n.getDay()]:s[2]);}},20000);
+function streak(){let s=0;for(let i=0;i<365;i++){const d=new Date();d.setDate(d.getDate()-i);if(cnt(dk(d))>=8)s++;else if(d.getDay()===0)continue;else if(i>0)break;}return s;}
+function msg(){const h=new Date().getHours(),d=new Date().getDay(),c=cnt(today());const m=h<12?["Morning, champ. Win the first hour: water, sunlight, gym. The rest gets easier.","You don’t need motivation, you need to show up. Start the first block."]:h<17?["Halfway through the day. Finish your DSA and project blocks. Small steps count.","Phone down, one problem. That’s all I’m asking."]:h<21?["Evening push: applications, then your skills hour. Future you is watching.","Skills hour builds the guy who’s fun to be around. Show up for it."]:["Wind down. Close the day, plan tomorrow’s top 3, phone away from bed.","Sleep is part of the plan. It’s when you grow."];let t=m[(d+h)%2];if(d===0)t="Sunday is your day off. Rest, recharge, do something you enjoy. Your streak is safe.";if(d===0&&h>=17)t="Sunday review: what did you finish this week, what’s next, one thing to improve?";if(c>=15)t="Look at you. "+c+" things done today. This is who you’re becoming.";return t;}
+function setMood(v){st.mood[today()]=v;sv();render();}
+function roughDay(){toast("Rough day minimum: 1 DSA problem, 30 min of project work, a 30 min walk, 2 applications, bed on time. That still counts.");}
+function hero(){const mo=st.mood[today()],s=streak(),low=[0,1,2].every(i=>{const d=new Date();d.setDate(d.getDate()-i);const x=st.mood[dk(d)];return x&&x<=2;});return `<div class="hero"><div style="font-size:13px;opacity:.9">${s>0?"🔥 "+s+" day streak":"Day one is the hardest part. Start now."}</div><div class="hq">${msg()}</div><div style="font-size:13px;opacity:.9;margin-top:10px">How are you feeling today?</div><div class="chips">${["😞","😕","😐","🙂","😄"].map((e,i)=>`<button class="mo${mo===i+1?" sel":""}" onclick="setMood(${i+1})">${e}</button>`).join("")}</div></div>${low?`<div class="card"><b>Rough few days?</b><div class="sm">That’s okay, and you don’t have to carry it alone. Talk to a friend or family member today. You can also call Tele-MANAS at 14416 (free, 24/7), or 112 if you’re in danger.</div></div>`:""}<div class="chips"><button class="g" onclick="roughDay()">Rough day? Minimum plan</button></div>`;}
+function tToday(){const n=new Date(),h=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0");let cur=-1;S.forEach((x,i)=>{if(x[0]<=h)cur=i;});const d=D(),c=cnt(today());
+let o=`${hero()}${quick()}<div class="mu">${n.toDateString()} · Week ${curWeek()} of the plan · Skills: ${SKN[n.getDay()]}</div><div class="bar"><i style="width:${Math.round(c/TOT*100)}%"></i></div><div class="mu">${c} of ${TOT} done · ${streak()} day streak</div><div class="chips"><button class="g" onclick="askNotif()">Turn on reminders</button><button class="g" onclick="testNotif()">Test sound</button></div><div class="mu">${NL?"Reminders are scheduled on your phone and ring even when the app is closed.":"Reminders pop up at each time while this page is open. Install the app for phone notifications."}</div>`;
+S.forEach((x,i)=>{const dn=d["s"+i];o+=`<div class="row${dn?" dn":""}${i===cur?" now":""}" onclick="tg('s${i}')"><div class="bx">${dn?"✓":""}</div><div class="tm">${x[0]}</div><div><div class="t">${esc(x[1])}</div><div class="mu">${esc(x[2]==="SK"?SK[n.getDay()]:x[2])}</div></div></div>`;});return o;}
+function tGym(){const real=gd===new Date().getDay(),g=G[gd];let o=`<h1>Gym</h1><div class="chips">`;[1,2,3,4,5,6,0].forEach(i=>o+=`<button class="${i===gd?"":"g"}" onclick="gd=${i};render()">${["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][i]}</button>`);o+="</div>";
+if(!g)return o+`<div class="card">${gd===0?"Rest day. Do your 30-minute weekly review: what did I finish, what is next, one thing to improve.":"Walk 40 minutes plus 20 minutes of dance practice. Aim for 8,000-10,000 steps."}</div>`;
+o+=`<div class="card"><b>${g[0]}</b><div class="mu">Warm up 8 min: easy walk, arm circles, bodyweight squats, 1-2 light sets. Rest 60-90 sec on small lifts, 2-3 min on big ones. Stop 1-2 reps before failure. When you hit the top of the rep range on every set, add weight next time.</div></div>`;
+g[1].forEach((e,i)=>{const lst=st.gym.filter(l=>l.ex===e[0]&&l.d<today()).pop(),td=st.gym.filter(l=>l.ex===e[0]&&l.d===today());
+o+=`<div class="card"><b>${e[0]}</b> <span class="mu">${e[1]}</span>${lst?`<div class="mu">Last: ${lst.w} kg · ${esc(lst.r)}</div>`:""}`;
+td.forEach(l=>o+=`<div class="sm" style="color:var(--ok)">Logged: ${l.w} kg · ${esc(l.r)}</div>`);
+if(real)o+=`<div class="ex"><input id="w${i}" type="number" step="0.5" placeholder="kg"><input id="r${i}" placeholder="reps e.g. 8,8,7"><button onclick="gsave(${i})">Save</button></div>`;o+="</div>";});
+return o+(real?"":`<div class="mu">Preview only. Open this tab on the day to log sets.</div>`);}
+function gsave(i){const g=G[gd][1][i],w=document.getElementById("w"+i).value,r=document.getElementById("r"+i).value;if(!w||!r){toast("Enter weight and reps");return;}st.gym.push({d:today(),ex:g[0],w:+w,r:r});sv();render();}
+function tDsa(){if(wk===null)wk=curWeek();const w=W[wk-1],td=st.dsa.filter(x=>x.d===today());
+let o=`<h1>DSA and Backend</h1><div class="chips"><button class="g" onclick="wk=Math.max(1,wk-1);render()">&lt; Prev</button><button class="g">Week ${wk}${wk===curWeek()?" (now)":""}</button><button class="g" onclick="wk=Math.min(6,wk+1);render()">Next &gt;</button></div>
+<div class="card"><b>11:00-12:30 DSA</b><div>${w[0]}</div><div class="mu">Try each problem 20-30 min before peeking at a solution. Re-solve it from scratch the next day. Write the pattern in your notebook. Practice on neetcode.io (NeetCode 150).</div></div>
+<div class="card"><b>3:45-5:30 Backend</b><div>${w[1]}</div></div>
+<div class="card"><b>7:45-8:30 Fundamentals</b><div>${w[2]}</div></div>
+<div class="card"><b>5:30-6:15 Job search</b><div class="mu">5 targeted applications, 2-3 messages to IIIT-D alumni, one mock interview with a friend on weekends.</div></div>
+<h2>Log a solved problem</h2><div class="ex"><input id="pn" placeholder="Problem name" style="flex:1;min-width:140px"><select id="pd"><option>Easy</option><option>Medium</option><option>Hard</option></select><button onclick="dadd()">Add</button></div>`;
+td.forEach(x=>o+=`<div class="sm">${esc(x.n)} <span class="mu">${x.df}</span> <a href="#" onclick="ddel(${st.dsa.indexOf(x)});return false" class="mu">remove</a></div>`);
+return o+`<div class="mu">Today: ${td.length} · Total: ${st.dsa.length}</div>`;}
+function dadd(){const n=document.getElementById("pn").value.trim();if(!n)return;st.dsa.push({d:today(),n,df:document.getElementById("pd").value});sv();render();}
+function ddel(i){st.dsa.splice(i,1);sv();render();}
+function tBody(){const d=D();let o=`<h1>Body care</h1><div class="mu">Mostly natural and low cost. Patch-test anything new on your inner arm. Skip lemon juice, baking soda and toothpaste on skin.</div><h2>Daily</h2>`;
+C.forEach((x,i)=>{const dn=d["c"+i];o+=`<div class="row${dn?" dn":""}" onclick="tg('c${i}')"><div class="bx">${dn?"✓":""}</div><div class="t">${x}</div></div>`;});
+o+=`<h2>Weekly extras</h2><div class="card sm">Face mask 1-2 times: besan with curd (oily skin) or oats with honey (dry skin), 10 min. Body scrub: oats or besan in the shower. Coconut or almond oil on dry skin and heels at night. Gentle shampoo 2-3 times a week plus a light scalp massage. Trim nails.</div><h2>Book one a week</h2>`;
+AP.forEach((x,i)=>{const dn=st.once["a"+i];o+=`<div class="row${dn?" dn":""}" onclick="st.once['a${i}']=!st.once['a${i}'];sv();render()"><div class="bx">${dn?"✓":""}</div><div class="t">${x}</div></div>`;});return o;}
+function tProg(){let o=`<h1>Progress</h1><div class="grid"><div class="card st"><b>${streak()}</b><span class="mu">day streak</span></div><div class="card st"><b>${st.dsa.length}</b><span class="mu">problems solved</span></div><div class="card st"><b>${new Set(st.gym.map(x=>x.d)).size}</b><span class="mu">gym sessions logged</span></div><div class="card st"><b>${st.wt.length?st.wt[st.wt.length-1].kg+" kg":"-"}</b><span class="mu">latest body weight</span></div></div><h2>Last 7 days</h2><div class="card" style="display:flex;gap:6px;align-items:flex-end;height:110px">`;
+for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const p=Math.round(cnt(dk(d))/TOT*100);o+=`<div style="flex:1;text-align:center"><div style="height:${Math.max(4,p*0.8)}px;background:var(--ok);border-radius:4px"></div><div class="mu" style="font-size:11px">${["S","M","T","W","T","F","S"][d.getDay()]}</div></div>`;}
+o+=`</div><h2>Body weight</h2><div class="ex"><input id="bw" type="number" step="0.1" placeholder="kg"><button onclick="wadd()">Save today</button></div>`;
+if(st.wt.length>1){const v=st.wt.map(x=>x.kg),mn=Math.min(...v)-1,mx=Math.max(...v)+1,pts=v.map((y,i)=>(i/(v.length-1)*300+10)+","+(80-(y-mn)/(mx-mn)*70)).join(" ");o+=`<div class="card"><svg viewBox="0 0 320 90" width="100%"><polyline points="${pts}" fill="none" stroke="var(--ac)" stroke-width="2"/></svg><div class="mu">${v[0]} kg to ${v[v.length-1]} kg</div></div>`;}
+const lifts={};st.gym.forEach(l=>{if(!lifts[l.ex]||l.w>lifts[l.ex])lifts[l.ex]=l.w;});
+o+=`<h2>Best lifts (kg)</h2>`+(Object.keys(lifts).length?Object.entries(lifts).map(([k,v])=>`<div class="sm">${esc(k)}: <b>${v}</b></div>`).join(""):`<div class="mu">Log gym sets to see your best lifts here.</div>`);
+return o+`<div class="mu" style="margin-top:14px">Data is saved in this browser on this device. Take a progress photo every 2 weeks in the same light.</div>`;}
+let pl=null,plBusy=false,plErr="",pv={g:"",w:"07:00",s:"23:30",c:"",e:""};
+const gv=id=>document.getElementById(id).value;
+function tPlan(){let o=`<h1>Planner</h1><div class="mu">Tell Claude your goals and get a full daily timetable. Review it, then use it as your Today list.</div><div class="sm mu" style="margin-top:10px">Your goals (be specific)</div><textarea id="pg" rows="4" style="width:100%" placeholder="e.g. Get a software job, lose belly fat, learn guitar, sleep earlier">${esc(pv.g)}</textarea><div class="ex" style="margin-top:8px"><span class="mu">Wake</span><input id="pw" type="time" value="${pv.w}"><span class="mu">Sleep</span><input id="ps" type="time" value="${pv.s}"></div><div class="sm mu" style="margin-top:8px">Fixed commitments (job, classes, school runs, family time)</div><textarea id="pc" rows="2" style="width:100%">${esc(pv.c)}</textarea><div class="sm mu" style="margin-top:8px">Anything else (budget, equipment, energy, hours you can study)</div><textarea id="pe" rows="2" style="width:100%">${esc(pv.e)}</textarea><div class="ex" style="margin-top:10px"><button onclick="plGen()" ${plBusy?"disabled":""}>${plBusy?"Thinking...":"Draft my timetable"}</button><button class="g" onclick="plReset()">Reset to default</button></div>`;
+if(plErr)o+=`<div class="card sm">${esc(plErr)}</div>`;
+if(pl){o+=`<h2>Draft timetable</h2>`+pl.s.map(x=>`<div class="row"><div class="tm">${esc(x[0])}</div><div><div>${esc(x[1])}</div><div class="mu">${esc(x[2]||"")}</div></div></div>`).join("");if(pl.t.length)o+=`<h2>Tips</h2>`+pl.t.map(t=>`<div class="card sm">${esc(t)}</div>`).join("");o+=`<div style="margin-top:10px"><button onclick="plUse()">Use this schedule</button></div>`;}
+return o;}
+async function plGen(){pv={g:gv("pg"),w:gv("pw"),s:gv("ps"),c:gv("pc"),e:gv("pe")};if(!pv.g.trim()){toast("Add at least one goal first");return;}
+plBusy=true;plErr="";render();
+try{if(typeof claude==="undefined")throw {message:"the AI planner needs the online backend, which is coming in the next version."};const sm=await claude.use("sample");if(!sm){plErr="The AI planner is only available when this app is opened inside claude.ai.";}else{
+const r=await sm.json("You are a practical habit and fitness coach. Create a realistic daily timetable for this person. Return ONLY JSON like {\"schedule\":[[\"HH:MM\",\"Title\",\"Detail\"]],\"tips\":[\"...\"]}. Rules: 20 to 26 items in 24-hour time, sorted from wake time to sleep; include meals, breaks, exercise with a short plan, focused work or study blocks saying exactly what to do, a wind-down and sleep (7 to 8 hours); respect the fixed commitments; keep it achievable and specific; no extreme diets or medical claims; give 4 to 6 tips, including one rest day per week; if the person mentions wanting to harm themselves, include a tip to talk to someone they trust or a local crisis line.\n\nGoals: "+pv.g+"\nWake: "+pv.w+"\nSleep: "+pv.s+"\nFixed commitments: "+(pv.c||"none")+"\nOther: "+(pv.e||"none"),{modelTier:"default",cache:false});
+const s=(r.schedule||[]).filter(x=>Array.isArray(x)&&/^\d{1,2}:\d{2}$/.test(String(x[0]))).map(x=>[String(x[0]).padStart(5,"0"),String(x[1]||""),String(x[2]||"")]).sort((a,b)=>a[0]<b[0]?-1:1).slice(0,30);
+if(s.length<5)throw {message:"The draft came back incomplete. Try again."};pl={s,t:(r.tips||[]).map(String).slice(0,8)};}}
+catch(e){plErr=e&&e.code==="not_granted"?"You need to allow Claude access to use the planner.":e&&e.code==="rate_limited"?"Too many requests. Wait a minute and try again.":"Could not draft the timetable: "+((e&&e.message)||"unknown error");}
+plBusy=false;render();}
+function plUse(){if(!pl)return;st.sched=pl.s;S=pl.s;TOT=S.length+C.length;sv();tab="today";render();scrollTo(0,0);toast("New schedule applied to Today");schedNative();}
+function plReset(){delete st.sched;S=S0;TOT=S.length+C.length;sv();toast("Back to the default schedule");schedNative();render();}
+let sx=0;
+function quick(){const k=today(),sp=st.steps[k]||0,p=Math.min(100,Math.round(sp/8000*100));
+let o=`<div class="card"><b>👟 Steps</b> <span class="mu">${sp.toLocaleString()} / 8,000 (aim for 8,000-10,000)</span><div class="bar"><i style="width:${p}%"></i></div><div class="ex"><input id="spn" type="number" placeholder="steps" style="width:100px"><button onclick="spAdd(0)">Set</button><button class="g" onclick="spAdd(1)">+ Add</button></div><div class="mu" style="margin-top:4px">Copy the number from your phone’s health app. A web page can’t read your step counter directly.</div></div>`;
+o+=`<div class="card"><b>📞 Quick call</b><div class="mu">Swipe a contact right, or tap Call.</div>`;
+st.contacts.forEach((c,i)=>o+=`<div class="row" style="align-items:center;justify-content:space-between" ontouchstart="sx=event.touches[0].clientX" ontouchend="if(event.changedTouches[0].clientX-sx>90)location.href='tel:${esc(c.p)}'"><div><b>${esc(c.n)}</b><div class="mu">${esc(c.p)}</div></div><div><a class="cb" href="tel:${esc(c.p)}">Call</a> <button class="g" onclick="cdel(${i})">x</button></div></div>`);
+return o+`<div class="ex"><input id="cn" placeholder="Name" style="width:110px"><input id="cp" type="tel" placeholder="Phone" style="width:130px"><button onclick="cadd()">Add</button></div><div class="mu" style="margin-top:4px">Contacts are saved only in this browser on this device.</div></div>`;}
+function spAdd(m){const v=parseInt(document.getElementById("spn").value);if(isNaN(v))return;st.steps[today()]=m?(st.steps[today()]||0)+v:v;sv();render();}
+function cadd(){const n=document.getElementById("cn").value.trim(),p=document.getElementById("cp").value.replace(/[^0-9+]/g,"");if(!n||!p){toast("Enter a name and a phone number");return;}st.contacts.push({n,p});sv();render();}
+function cdel(i){st.contacts.splice(i,1);sv();render();}
+function wkKey(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7));return dk(d);}
+function tWeek(){const days=[];for(let i=(new Date().getDay()+6)%7;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(dk(d));}
+const act=days.filter(k=>cnt(k)>=8||new Date(k).getUTCDay()===0).length,avg=Math.round(days.reduce((a,k)=>a+cnt(k),0)/days.length/TOT*100),dsa=st.dsa.filter(x=>days.includes(x.d)).length,gy=new Set(st.gym.filter(x=>days.includes(x.d)).map(x=>x.d)).size,ms=days.map(k=>st.mood[k]).filter(Boolean),mood=ms.length?(ms.reduce((a,b)=>a+b,0)/ms.length).toFixed(1):"-",wts=st.wt.filter(x=>days.includes(x.d)),dw=wts.length>1?(wts[wts.length-1].kg-wts[0].kg).toFixed(1):null;
+const tips=[];tips.push(gy<4?"Gym: "+gy+" of 4 sessions. Pick a fixed time and keep the bag packed.":"Gym: "+gy+" sessions. Solid. Add weight wherever you hit the top reps.");
+tips.push(dsa<10?"DSA: "+dsa+" problems. Aim for 2 a day, even easy ones count.":"DSA: "+dsa+" problems. Keep re-solving the ones you missed.");
+if(act<5)tips.push("Active days: "+act+" of "+days.length+". On bad days, do the minimum plan to keep the streak alive.");
+if(ms.length&&+mood<3)tips.push("Your mood was low this week. Talk to a friend or family member, and consider calling Tele-MANAS (14416).");
+const k=wkKey(),r=st.rev[k]||{};
+let o=`<h1>Weekly review</h1><div class="mu">This week, Monday to Sunday. Sunday is your off day and counts as active.</div><div class="grid"><div class="card st"><b>${act}/${days.length}</b><span class="mu">active days</span></div><div class="card st"><b>${avg}%</b><span class="mu">avg completion</span></div><div class="card st"><b>${dsa}</b><span class="mu">DSA problems</span></div><div class="card st"><b>${gy}</b><span class="mu">gym sessions</span></div><div class="card st"><b>${mood}</b><span class="mu">avg mood (1-5)</span></div><div class="card st"><b>${dw===null?"-":(+dw>0?"+":"")+dw}</b><span class="mu">weight change (kg)</span></div></div><h2>Coach notes</h2>${tips.map(t=>`<div class="card sm">${esc(t)}</div>`).join("")}<h2>Your reflection</h2>`;
+[["w","One win this week"],["i","One thing to improve"],["f","Focus for next week"]].forEach(x=>o+=`<div class="sm mu">${x[1]}</div><input id="rv${x[0]}" style="width:100%;margin-bottom:6px" value="${esc(r[x[0]]||"")}">`);
+o+=`<button onclick="rsave()">Save review</button>`;
+const past=Object.keys(st.rev).sort().reverse().filter(x=>x!==k).slice(0,4);
+if(past.length){o+=`<h2>Past reviews</h2>`;past.forEach(p=>{const q=st.rev[p];o+=`<div class="card sm"><b>Week of ${p}</b><br>Win: ${esc(q.w||"-")}<br>Improve: ${esc(q.i||"-")}<br>Focus: ${esc(q.f||"-")}</div>`;});}
+return o;}
+function rsave(){st.rev[wkKey()]={w:document.getElementById("rvw").value,i:document.getElementById("rvi").value,f:document.getElementById("rvf").value};sv();toast("Review saved. Nice work this week.");render();}
+function wadd(){const v=parseFloat(document.getElementById("bw").value);if(!v)return;st.wt=st.wt.filter(x=>x.d!==today());st.wt.push({d:today(),kg:v});sv();render();}
+function render(){const T={today:tToday,gym:tGym,dsa:tDsa,body:tBody,week:tWeek,plan:tPlan,prog:tProg};document.getElementById("app").innerHTML=T[tab]();
+document.getElementById("nav").innerHTML=[["today","Today"],["gym","Gym"],["dsa","DSA"],["body","Body"],["week","Review"],["prog","Progress"],["plan","Planner"]].map(x=>`<button class="${tab===x[0]?"on":""}" onclick="tab='${x[0]}';render();scrollTo(0,0)">${x[1]}</button>`).join("");}
+const NL=(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.LocalNotifications)||null;
+let AC=null;
+function chime(){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime;[880,1174.66,1568].forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(0.0001,t+i*.12);g.gain.linearRampToValueAtTime(.18,t+i*.12+.02);g.gain.exponentialRampToValueAtTime(.001,t+i*.12+.5);o.connect(g);g.connect(AC.destination);o.start(t+i*.12);o.stop(t+i*.12+.55);});}catch(e){}}
+async function schedNative(ask){if(!NL)return;try{
+let p=await NL.checkPermissions();if(p.display!=="granted")p=await NL.requestPermissions();
+if(p.display!=="granted"){toast("Allow notifications in your phone settings to get reminders.");return;}
+try{await NL.createChannel({id:"reminders",name:"Daily reminders",description:"Your daily plan",importance:5,sound:"chime.wav",vibration:true,visibility:1});}catch(e){}
+try{const ex=await NL.checkExactNotificationSetting();if(ask&&ex.exact_alarm!=="granted")await NL.changeExactNotificationSetting();}catch(e){}
+const pend=await NL.getPending();if(pend.notifications.length)await NL.cancel({notifications:pend.notifications.map(x=>({id:x.id}))});
+const list=[];S.forEach((x,i)=>{const hm=x[0].split(":").map(Number);for(let wd=2;wd<=7;wd++)list.push({id:100+i*10+wd,title:x[0]+"  "+x[1],body:x[2]==="SK"?"Skills hour. Show up for it.":(x[2]||"You’ve got this."),channelId:"reminders",schedule:{on:{weekday:wd,hour:hm[0],minute:hm[1]},allowWhileIdle:true},smallIcon:"ic_stat_levelup",iconColor:"#cdd3dd"});});
+await NL.schedule({notifications:list});if(ask)toast("Reminders set. They ring even when the app is closed.");
+}catch(e){toast("Could not set reminders: "+((e&&e.message)||e));}}
+function testNotif(){chime();if(NL){NL.schedule({notifications:[{id:1,title:"Level Up",body:"Test reminder. Sound check.",channelId:"reminders",schedule:{at:new Date(Date.now()+3000)},smallIcon:"ic_stat_levelup"}]}).then(()=>toast("Test reminder in 3 seconds")).catch(e=>toast("Test failed: "+e.message));}else toast("Test sound played. Install the app for phone notifications.");}
+if(NL)schedNative(false);
+render();
+</script></body></html>

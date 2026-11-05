@@ -1,0 +1,14 @@
+{
+  "appId": "com.levelup.app",
+  "appName": "Level Up",
+  "webDir": "www",
+  "backgroundColor": "#07080a",
+  "android": { "backgroundColor": "#07080a" },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_levelup",
+      "iconColor": "#CDD3DD",
+      "sound": "chime.wav"
+    }
+  }
+}
