@@ -11,5 +11,19 @@
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^6.0.0"
-  }
+  },
+  "author": "Aryan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aryan22109/level-up.git"
+  },
+  "keywords": [
+    "android",
+    "capacitor",
+    "habit-tracker",
+    "fitness-tracker",
+    "local-notifications",
+    "productivity"
+  ]
 }
